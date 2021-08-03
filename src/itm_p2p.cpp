@@ -1,6 +1,6 @@
-#include "..\include\itm.h"
-#include "..\include\Enums.h"
-#include "..\include\Errors.h"
+#include "../include/itm.h"
+#include "../include/Enums.h"
+#include "../include/Errors.h"
 
 /*=============================================================================
  |
@@ -185,7 +185,7 @@ int ITM_P2P_TLS_Ex(double h_tx__meter, double h_rx__meter, double pfl[], int cli
     double gamma_e;             // Curvature of the effective earth
     double delta_h__meter;      // Terrain irregularity parameter
     double d__meter;            // Path distance, in meters
-    complex<double> Z_g;	    // Ground impedance
+    std::complex<double> Z_g;	    // Ground impedance
     double theta_hzn[2];        // Terminal horizon angles
     double d_hzn__meter[2];     // Terminal horizon distances
     double h_e__meter[2];       // Terminal effective heights

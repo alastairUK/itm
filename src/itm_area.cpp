@@ -1,6 +1,6 @@
-#include "..\include\itm.h"
-#include "..\include\Enums.h"
-#include "..\include\Errors.h"
+#include "../include/itm.h"
+#include "../include/Enums.h"
+#include "../include/Errors.h"
 
 /*=============================================================================
  |
@@ -138,7 +138,7 @@ int ITM_AREA_TLS_Ex(double h_tx__meter, double h_rx__meter, int tx_site_criteria
     double theta_hzn[2];
     double d_hzn__meter[2];
     double h_e__meter[2];
-    complex<double> Z_g;
+    std::complex<double> Z_g;
     double N_s;
     double gamma_e;
     double A_ref__db = 0;

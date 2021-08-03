@@ -4,9 +4,9 @@
 #include "Labels.h"
 #include "Tags.h"
 #include "Reporting.h"
-#include "..\..\include\Enums.h"
-#include "..\..\include\Errors.h"
-#include "..\..\include\Warnings.h"
+#include "../../include/Enums.h"
+#include "../../include/Errors.h"
+#include "../../include/Warnings.h"
 
 int dllVerMajor = NOT_SET;
 int dllVerMinor = NOT_SET;

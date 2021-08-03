@@ -1,5 +1,5 @@
-#include "..\include\itm.h"
-#include "..\include\Enums.h"
+#include "../include/itm.h"
+#include "../include/Enums.h"
 
 /*=============================================================================
  |
@@ -23,7 +23,7 @@
  |
  *===========================================================================*/
 void InitializePointToPoint(double f__mhz, double h_sys__meter, double N_0, int pol, 
-    double epsilon, double sigma, complex<double> *Z_g, double *gamma_e, double *N_s)
+    double epsilon, double sigma, std::complex<double> *Z_g, double *gamma_e, double *N_s)
 {
     // gamma_a is the curvature of the actual earth, ~1 / 6370 km
     double gamma_a = 157e-9;
@@ -38,7 +38,7 @@ void InitializePointToPoint(double f__mhz, double h_sys__meter, double N_0, int 
     *gamma_e = gamma_a * (1.0 - 0.04665 * exp(*N_s / 179.3));   // [TN101, Eq 4.4], reworked
 
     // complex relative permittivity
-    complex<double> ep_r = complex<double>(epsilon, 18000 * sigma / f__mhz);
+    std::complex<double> ep_r = std::complex<double>(epsilon, 18000 * sigma / f__mhz);
 
     *Z_g = sqrt(ep_r - 1.0);                        // ground impedance (horizontal polarization)
 

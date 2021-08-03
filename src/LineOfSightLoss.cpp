@@ -1,4 +1,4 @@
-#include "..\include\itm.h"
+#include "../include/itm.h"
 
 /*=============================================================================
  |
@@ -19,7 +19,7 @@
  |      Returns:  A_los__db         - Loss, in dB
  |
  *===========================================================================*/
-double LineOfSightLoss(double d__meter, double h_e__meter[2], complex<double> Z_g, double delta_h__meter, 
+double LineOfSightLoss(double d__meter, double h_e__meter[2], std::complex<double> Z_g, double delta_h__meter,
     double M_d, double A_d0, double d_sML__meter, double f__mhz)
 {
     double delta_h_d__meter = TerrainRoughness(d__meter, delta_h__meter);
@@ -33,7 +33,7 @@ double LineOfSightLoss(double d__meter, double h_e__meter[2], complex<double> Z_
     double sin_psi = (h_e__meter[0] + h_e__meter[1]) / sqrt(pow(d__meter, 2) + pow(h_e__meter[0] + h_e__meter[1], 2));
 
     // [Algorithm, Eqn 4.47]
-    complex<double> R_e = (sin_psi - Z_g) / (sin_psi + Z_g) * exp(-MIN(10.0, wn * sigma_h_d__meter * sin_psi));
+    std::complex<double> R_e = (sin_psi - Z_g) / (sin_psi + Z_g) * exp(-MIN(10.0, wn * sigma_h_d__meter * sin_psi));
 
     // q = Magnitude of R_e', [Algorithm, Eqn 4.48]
     double q = pow(R_e.real(), 2) + pow(R_e.imag(), 2);
@@ -48,7 +48,7 @@ double LineOfSightLoss(double d__meter, double h_e__meter[2], complex<double> Z_
         delta_phi = PI - pow(PI / 2.0, 2) / delta_phi;
 
     // Two-ray attenuation
-    complex<double> rr = complex<double>(cos(delta_phi), -sin(delta_phi)) + R_e;
+    std::complex<double> rr = std::complex<double>(cos(delta_phi), -sin(delta_phi)) + R_e;
     double A_t__db = -10 * log10(pow(rr.real(), 2) + pow(rr.imag(), 2));
 
     // Extended diffraction attenuation

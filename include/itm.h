@@ -1,13 +1,18 @@
+#pragma once
+
 #include <complex>
 #include <math.h>
 #include <algorithm>
 #include <stdlib.h>
 #include <vector>
 
-using namespace std;
-
 // Export the DLL functions as "C" and not C++
+#ifdef _WIN32
 #define DLLEXPORT extern "C" __declspec(dllexport)
+#else
+#define DLLEXPORT
+#endif
+
 #define MAX(x, y) (((x) > (y)) ? (x) : (y))
 #define MIN(x, y) (((x) < (y)) ? (x) : (y))
 #define DIM(x, y) (((x) > (y)) ? (x - y) : (0))
@@ -70,7 +75,7 @@ DLLEXPORT int ITM_AREA_CR_Ex(double h_tx__meter, double h_rx__meter, int tx_site
 // ITM Helper Functions
 
 DLLEXPORT double ComputeDeltaH(double pfl[], double d_start__meter, double d_end__meter);
-DLLEXPORT double DiffractionLoss(double d__meter, double d_hzn__meter[2], double h_e__meter[2], complex<double> Z_g,
+DLLEXPORT double DiffractionLoss(double d__meter, double d_hzn__meter[2], double h_e__meter[2], std::complex<double> Z_g,
     double a_e__meter, double delta_h__meter, double h__meter[2], int mode, double theta_los, double d_sML__meter, double f__mhz);
 DLLEXPORT double FFunction(double td);
 DLLEXPORT void FindHorizons(double pfl[], double a_e__meter, double h__meter[2], double theta_hzn[2], double d_hzn__meter[2]);
@@ -81,20 +86,20 @@ DLLEXPORT double HeightFunction(double x__meter, double K);
 DLLEXPORT void InitializeArea(int site_criteria[2], double gamma_e, double delta_h__meter,
     double h__meter[2], double h_e__meter[2], double d_hzn__meter[2], double theta_hzn[2]);
 DLLEXPORT void InitializePointToPoint(double f__mhz, double h_sys__meter, double N_0, int polarization, double epsilon, 
-    double sigma, complex<double> *Z_g, double *gamma_e, double *N_s);
+    double sigma, std::complex<double> *Z_g, double *gamma_e, double *N_s);
 DLLEXPORT double InverseComplementaryCumulativeDistributionFunction(double q);
 DLLEXPORT double KnifeEdgeDiffraction(double d__meter, double f__mhz, double a_e__meter, double theta_los, double d_hzn__meter[2]);
 DLLEXPORT void LinearLeastSquaresFit(double pfl[], double d_start, double d_end, double *fit_y1, double *fit_y2);
-DLLEXPORT double LineOfSightLoss(double d__meter, double h_e__meter[2], complex<double> Z_g, double delta_h__meter,
+DLLEXPORT double LineOfSightLoss(double d__meter, double h_e__meter[2], std::complex<double> Z_g, double delta_h__meter,
     double M_d, double A_d0, double d_sML__meter, double f__mhz);
-DLLEXPORT int LongleyRice(double theta_hzn[2], double f__mhz, complex<double> Z_g, double d_hzn__meter[2], double h_e__meter[2], 
+DLLEXPORT int LongleyRice(double theta_hzn[2], double f__mhz, std::complex<double> Z_g, double d_hzn__meter[2], double h_e__meter[2],
     double gamma_e, double N_s, double delta_h__meter, double h__meter[2], double d__meter, int mode, double *A_ref__db, 
     long *warnings, int *propmode);
 DLLEXPORT void QuickPfl(double pfl[], double gamma_e, double h__meter[2], double theta_hzn[2], double d_hzn__meter[2], 
     double h_e__meter[2], double *delta_h__meter, double *d__meter);
 DLLEXPORT double SigmaHFunction(double delta_h__meter);
 DLLEXPORT double SmoothEarthDiffraction(double d__meter, double f__mhz, double a_e__meter, double theta_los, 
-    double d_hzn__meter[2], double h_e__meter[2], complex<double> Z_g);
+    double d_hzn__meter[2], double h_e__meter[2], std::complex<double> Z_g);
 DLLEXPORT double TerrainRoughness(double d__meter, double delta_h__meter);
 DLLEXPORT double TroposcatterLoss(double d__meter, double theta_hzn[2], double d_hzn__meter[2], double h_e__meter[2], 
     double a_e__meter, double N_s, double f__mhz, double theta_los, double *h0);
